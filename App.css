@@ -1,0 +1,101 @@
+.background{
+    width: 377px;
+    height: min-content;
+    background-color: blanchedalmond;
+    display: flex ;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    
+}
+#add_button{
+    width: 50px;
+    height: 40px;
+}
+#button_container{
+    width: 300px;
+    height: 50px;                  
+    display: flex;
+    justify-content: space-between;
+}
+#button_container button{
+    width: 30%;
+    height: 50px;
+}
+.box{
+    display: flex;
+    align-items: center;
+    width: 345px;
+    height: 62px;
+    background-color: aliceblue;
+    gap: 10px;
+    border-radius: var(--radius-rounded-md, 6px);
+background: #F9FAFB;
+    
+    
+}
+body{
+display: flex;
+justify-content: center;
+}
+#top{
+    width: 345px;
+    height: fit-content;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+#bottom{
+    width: 345px;
+    height: 24px;
+    background-color: black;
+}
+
+
+#header{
+    width: 345px;
+    height: 28px;
+    text-align: center ;
+    font-weight: 700;
+}
+#input_field{
+    width: 345px;
+    height: 40px;
+    
+    display: flex;
+    justify-content: space-between;
+}
+#button_field{
+    width: 345px;
+    height: 32px;
+   
+    display: flex;
+    gap: 6px;
+    
+}
+#content_field{
+    width: 345px;
+    height: min-content;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#input{
+    width: 280px;
+    height: 40px;
+}
+#button_field button{
+    width: min-content;
+    height: 32px;
+   
+}
+#check{
+   
+    width: 20px;
+    height: 20px;
+}
