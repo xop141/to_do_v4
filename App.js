@@ -1,91 +1,118 @@
-
-
 import './App.css';
 import React, { useState } from 'react';
 
-
-
-let id_counter = 0
-
+let id_counter = 0;
 
 function App() {
+  const [todo, setTodo] = useState([]);
+  const [input, setInput] = useState("");
+  const [filter, setFilter] = useState("all");
 
 
- 
+  const handle_input = (event) => {
+    setInput(event.target.value);
+  };
 
- 
-const status_displayer=(id)=>{
-  
-  
-  
-  todo.map((tod)=>{
-    if (tod.id === id) {
-      return(tod.status = "done")
+  const add_task = () => {
+    if (input.length === 0) {
+      return; 
+    } else {
+      id_counter = id_counter + 1;
+      setTodo([...todo, { text: input, status: 'active', id: id_counter }]);
+      setInput("");
     }
-  })
+  };
+
+
+
+  const statusdisplayer = (id) => {
+    setTodo(todo.map(tod =>
+      tod.id === id ? { ...tod, status: tod.status === 'done' ? 'active' : 'done' } : tod
+    ));
+    
+    
+  };
+ // const statuschecker = (tod) => {
+   // return tod.status === 'done';
+  //};
+  const deleteALL=()=>{
+    setTodo([])
+  }
+const deleteTask=()=>{
+  console.log(1);
   
 }
-const status_checker=(tod)=>{
-  if (tod.status === "done") {
-    return true
-  }
+  const showdone = () => {
+    setFilter("done");
+  };
+
+  const showactive = () => {
+    setFilter("active");
+  };
+
+  const showall = () => {
+    setFilter("all");
+   
+   
+
+    
+  };
+
+  const filteredTodos = todo.filter(tod => {
+    if (filter === "done") {
+      return tod.status === "done";
+    } else if (filter === "active") {
+      return tod.status === "active";
+    }
+    return true; 
+  });
+const deletetask=(event)=>{
+  console.log(event);
   
-  }
-const show_done=(todo)=>{
-  
-  console.log(todo.filter(status_checker));
-
-
-
-
 }
-
-
-  const [todo, setTodo] = useState ([])
-const [input, setInput] = useState ("")
-
-
-  const handle_input = (event) =>{
-    setInput(event.target.value)
-  }
-  const add_task=()=>{
-   if (input.length==0) {
-    alert ("empty")
-   } else{
-    id_counter = id_counter+1
-    setTodo([...todo,{text: input, status:'active', id: id_counter }])
-    setInput("")
-    console.log(todo);
-   }
-  }
 
   return (
-   <div className='background'>
-    <div id='top'>
-      <div id='header'>To-Do list</div>
-      <div id='input_field'>
-      <input onChange={handle_input} value={input} id='input' placeholder='add task' />
-     <button id='add_button' onClick={add_task}>add</button>
+    <div className='background'>
+      <div id='top'>
+        <div id='header'>To-Do list</div>
+        <div id='input_field'>
+          <input onChange={handle_input} value={input} id='input' placeholder='add task' />
+          <button id='add_button' onClick={add_task} disabled={input.length === 0}>Add</button>
+        </div>
+        <div id='button_field'>
+          <button onClick={showall}>All</button>
+          <button onClick={showactive}>Active</button>
+          <button onClick={showdone}>Done</button>
+        </div>
+        <div id='content_field'>
+          {filteredTodos.length === 0 ? (
+            <p>No tasks yet. Add one above!</p>
+          ) : (
+            filteredTodos.map((tod) => (
+         <div id='test2'>
+              <div key={tod.id} className='box'>
+                <input
+                  id='check'
+                  type="checkbox"
+                  checked={tod.status === 'done'}
+                  onChange={() => statusdisplayer(tod.id)}
+                  
+                />
+                {tod.text}
+                </div>
+                <button id='delete_button_container' onClick={deleteTask}>delete</button>
+ </div>
+            ))
+          )}
+        </div>
       </div>
-      <div id='button_field'>
-      <button>all</button>
-      <button>active</button>
-      <button onClick={()=>show_done(todo)}>done</button>
-    </div>
-      <div id='content_field'>No tasks yet. Add one above!
-      {todo.map((todo)=>{
-      return (
-        <div key={todo.id} className='box'> <input id='check' type="checkbox" onClick={()=>status_displayer(todo.id)}/>{todo.text}</div>
-       
-      )
-    })}
+      <div id='bottom'>
+      {todo.length} task
+      <button onClick={deleteALL}>delete all</button>
+      
       </div>
     </div>
-    <div id='bottom'></div>
-    
-   
-   </div>
-  )
+  );
 }
 
 export default App;
