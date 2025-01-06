@@ -26,7 +26,7 @@
 .box{
     display: flex;
     align-items: center;
-    width: 345px;
+    width: fit-content;
     height: 62px;
     background-color: aliceblue;
     gap: 10px;
@@ -51,7 +51,9 @@ justify-content: center;
 #bottom{
     width: 345px;
     height: 24px;
-    background-color: black;
+    background-color: gold;
+    display: flex;
+    justify-content: space-between;
 }
 
 
@@ -98,4 +100,17 @@ justify-content: center;
    
     width: 20px;
     height: 20px;
+}
+#test2{
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+#delete_button_container{
+    width: 50px;
+    height: 50px;
+    background-color: red;
 }
